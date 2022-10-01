@@ -1,0 +1,23 @@
+*{
+    padding: none;
+    margin: none;
+    box-sizing: border-box;
+}
+
+.hero-bg{
+    background-image: url("../images/lee-sullivan-A0OR1JH2iHw-unsplash.jpg");
+    background-color: rgb(15, 54, 75);
+    height: 80vh;
+    width: 100%;
+    background-position: bottom;
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.backdrop-img{
+    position: absolute;
+    z-index: 0;
+    height: 50%;
+    width: auto;
+}
