@@ -13,5 +13,6 @@ require("./config/mongoose.config")
 require("./routes/trails.routes")(app)
 require("./routes/resorts.routes")(app)
 require("./routes/trips.routes")(app)
+require("./routes/user.routes")(app)
 
 app.listen(port, ()=> console.log(`Locked and loaded on port ${port}`))

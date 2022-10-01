@@ -22,8 +22,6 @@ function App() {
           <Route path='/trips/add' element={<AddTrip/>}/>
         </Routes>
       </Router>
-
-      
     </div>
   );
 }

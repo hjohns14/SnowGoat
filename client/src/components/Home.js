@@ -1,9 +1,17 @@
 import React from 'react'
 import '../assets/css/style.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Home = () => {
     const navigate = useNavigate()
+
+    useEffect(() =>{
+        const loggedIn = window.sessionStorage.getItem("loggedIn")
+        if (loggedIn){
+            navigate("/dashboard")
+        }
+    },[navigate])
 
     const handleLogin = (e) =>{
         navigate("/login")

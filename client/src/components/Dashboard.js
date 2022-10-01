@@ -1,10 +1,26 @@
 import React from 'react'
+import LogoutButton from './LogoutButton'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
+    const navigate = useNavigate()
+    const name = window.sessionStorage.getItem("firstName")
+
+    useEffect(() =>{
+        const loggedIn = window.sessionStorage.getItem("loggedIn")
+        if (!loggedIn){
+            navigate("/")
+        }
+    },[navigate])
+
     return (
         <div className=' h-[100vh] bg-gradient-to-br from-green-900 via-sky-500 to-orange-300'>
-            <h2 className='text-start px-[150px] py-4 text-4xl text-sky-400 font-semibold'>SnowGoat</h2>
-            <h2 className='text-2xl text-sky-100 font-semibold'>Welcome User**</h2>
+            <div className='flex justify-between px-[150px] py-4'>
+                <h2 className='text-start text-4xl text-sky-400 font-semibold'>SnowGoat</h2>
+                <LogoutButton/>
+            </div>
+            <h2 className='text-2xl text-sky-100 font-semibold'>Welcome {name}</h2>
             <main className='flex justify-between px-24 py-10'>
                 <section className='flex-1 flex flex-col mx-12 p-3 border border-black bg-neutral-200'>
                     <h6 className='text-lg underline text-orange-500'>Previous Trips</h6>
