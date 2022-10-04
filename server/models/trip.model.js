@@ -1,4 +1,7 @@
+const { mongo } = require("mongoose")
 const mongoose = require("mongoose")
+const UserModel = require("./user.model").model
+const UserSchema = require("./user.model").schema
 
 
 const TripSchema= new mongoose.Schema({
@@ -27,17 +30,43 @@ const TripSchema= new mongoose.Schema({
         visibility: {
             type: String,
             enum:[
-                "High",
-                "Average",
-                "Low"
+                "sunny",
+                "overcast",
+                "snowing"
             ]
         }
     },
     notes:{
         type: String,
         default: "None"
+    },
+    date: {
+        type: Date,
+        required: [true, "Date is required"]
+    },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true],
+        ref: "User"
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model("Trip", TripSchema)
+// TripSchema.pre('remove', {document:true, query:false}, function(next){
+//     console.log("Hello")
+//     UserModel.updateOne({ _id: this.userId.toString() },
+//         { $pull: { trips: this._id.toString() } },
+//         { multi:true })
+//     .exec()
+//     next()
+// })
+
+UserSchema.pre('remove', function(next){
+    TripSchema.remove({userId: this._id}).exec()
+    next()
+})
+
+module.exports = {
+    model: mongoose.model("Trip", TripSchema),
+    schema: TripSchema
+}
 

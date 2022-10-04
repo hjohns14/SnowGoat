@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
+
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -25,9 +26,10 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Last name is required"],
         trim: true
     },
-    trips:{
+    trips: {
         type: [mongoose.Schema.Types.ObjectId],
-        default: []
+        default: [],
+        ref: "Trip"
     }
 
 }, {timestamps: true})
@@ -43,6 +45,7 @@ UserSchema.pre("validate", function(next){
     next()
 })
 
+
 UserSchema.pre("save", function(next){
     bcrypt.hash(this.password, 10)
     .then(hash =>{
@@ -51,4 +54,7 @@ UserSchema.pre("save", function(next){
     })
 })
 
-module.exports = mongoose.model("User", UserSchema)
+module.exports = {
+    model: mongoose.model("User", UserSchema),
+    schema: UserSchema
+}

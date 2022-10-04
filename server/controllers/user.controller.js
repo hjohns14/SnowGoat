@@ -1,4 +1,4 @@
-const User = require("../models/user.model")
+const User = require("../models/user.model").model
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 // const {secret, authenticate} = require("../config/jwt.config")
@@ -71,6 +71,16 @@ module.exports = {
     logout: (req, res) =>{
         res.clearCookie("usertoken")
         res.sendStatus(200)
+    },
+    addTrip: (req, res) =>{
+        User.findOneAndUpdate({_id: req.params.id}, {$push: {trips: req.body.trips}}, {new:true})
+        .then(user => res.json({updatedUser: user}))
+        .catch(err => res.status(400).json(err))
+    },
+    getUserTrips: (req, res) =>{
+        User.findOne({_id: req.params.id}).populate("trips")
+        .then(user => res.json(user))
+        .catch(err => res.status(403).json({message: "Something went wrong with populate", err}))
     }
 
 

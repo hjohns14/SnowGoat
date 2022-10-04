@@ -13,7 +13,7 @@ const LoginForm = (props) => {
             </div>
             <div className='my-5 flex justify-between'>
                 <label htmlFor="password">Password</label>
-                <input onChange={handleChange} type="text" name="password" className='border border-black'/>
+                <input onChange={handleChange} type="password" name="password" className='border border-black'/>
             </div>
             {errors.map((item, idx) => <p className='text-red-500 underline text-start' key={idx}>{item}</p>)}
             <div>

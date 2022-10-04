@@ -20,11 +20,11 @@ const RegisterForm = (props) => {
             </div>
             <div className='my-8 flex justify-between'>
                 <label htmlFor="password">Password</label>
-                <input onChange={handleChange} type="text" name="password" className='border border-black'/>
+                <input onChange={handleChange} type="password" name="password" className='border border-black'/>
             </div>
             <div className='my-8 flex justify-between'>
                 <label htmlFor="confirmPassword">Confirm Password</label>
-                <input onChange={handleChange} type="text" name="confirmPassword" className='border border-black'/>
+                <input onChange={handleChange} type="password" name="confirmPassword" className='border border-black'/>
             </div>
             <div>
             <button className='border border-black bg-green-400 px-3 py-1 rounded-lg mt-3

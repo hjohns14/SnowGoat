@@ -9,6 +9,8 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import AddTrip from './components/AddTrip';
+import TripDetails from './components/TripDetails';
+import EditTrip from './components/EditTrip';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/trips/add' element={<AddTrip/>}/>
+          <Route path='/trips/details/:id' element={<TripDetails/>}/>
+          <Route path='/trips/edit/:id' element={<EditTrip/>}/>
         </Routes>
       </Router>
     </div>

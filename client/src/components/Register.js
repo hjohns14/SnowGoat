@@ -53,7 +53,7 @@ const Register = () => {
                 setLastName(e.target.value)
                 break
             case "email":
-                setEmail(e.target.value)
+                setEmail(e.target.value.toLowerCase())
                 break
             case "password":
                 setPassword(e.target.value)
