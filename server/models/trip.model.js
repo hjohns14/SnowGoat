@@ -12,7 +12,7 @@ const TripSchema= new mongoose.Schema({
         trim: true
     },
     trails:{
-        type: Array,
+        type: [String],
         required: [true, "You must have at least one trail on a trip"],
     },
     weather:{
@@ -27,22 +27,22 @@ const TripSchema= new mongoose.Schema({
         }
     },
     conditions: {
-        visibility: {
-            type: String,
-            enum:[
-                "sunny",
-                "overcast",
-                "snowing"
-            ]
-        }
+        type: String,
+        enum:[
+            "sunny",
+            "overcast",
+            "snowing"
+        ],
+        required: [true, "Conditions are required"]
     },
     notes:{
         type: String,
-        default: "None"
+        default: "None",
+        required: [true, "Notes required"]
     },
     date: {
         type: Date,
-        required: [true, "Date is required"]
+        default: ''
     },
     userId:{
         type: mongoose.Schema.Types.ObjectId,

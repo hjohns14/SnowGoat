@@ -42,7 +42,7 @@ const Login = () => {
     const handleChange = e =>{
         switch (e.target.name){
             case "email":
-                setEmail(e.target.value)
+                setEmail(e.target.value.toLowerCase())
                 break
             case "password":
                 setPassword(e.target.value)

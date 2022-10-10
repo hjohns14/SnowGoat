@@ -1,4 +1,5 @@
 const User = require("../models/user.model").model
+const Trips = require("../models/trip.model").model
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 // const {secret, authenticate} = require("../config/jwt.config")
@@ -28,7 +29,12 @@ module.exports = {
     },
     destroy: function(req, res) {
         User.findOneAndDelete({_id: req.params.id})
-        .then(user => res.json({deletedUser: user}))
+        .then(user => {
+            Trips.deleteMany({_id: {$in: user.trips }})
+            .then()
+            .catch(err => res.status(404).json(err))
+            res.json({deletedUser: user})
+        })
         .catch(err => res.status(400).json(err))
     },
     register: async function(req, res) {
